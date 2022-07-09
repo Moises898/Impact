@@ -1,0 +1,26 @@
+.highlight {
+    border-radius: 0.2rem;
+    color: rgb(255, 255, 255);
+    padding: 0.3rem;
+    margin-bottom: .5rem;
+  }
+  .bold {
+    padding-left: 1rem;
+    font-weight: 700;
+  }
+  .blue {
+    background-color: rgb(0, 150, 243);
+  }
+  .red {
+    background-color: lightblue;
+  }
+
+  #MainMenu {
+    visibility: hidden;
+  }
+footer {
+  visibility: hidden;
+}
+header {
+  visibility: hidden;
+}
