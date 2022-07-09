@@ -12,6 +12,9 @@ import textwrap
 import streamlit.components.v1 as components
 from sklearn.preprocessing import PolynomialFeatures
 
+
+st.set_page_config(page_title="Impact ML", layout="wide")
+
 #Allow to insert a CSS file to combine with python scripting
 def local_css(file_name):
     with open(file_name) as f:
@@ -27,12 +30,12 @@ def render_svg(svg):
 
 #load the linear model
 
-pkl_filename = r"\Models\Polynomial.pkl" 
+pkl_filename = r"Models\Polynomial.pkl" 
 with open(pkl_filename, 'rb') as file:
     pol = pickle.load(file)  
 
 #Load the NN
-NN = load_model(r"\Models\PO(Normal).h5")
+NN = load_model(r"Models\PO(Normal).h5")
 def apportion(data,forecast):    
     pv_total = np.sum(data["Sales"])
     data[["Sales","PO"]] = data[["Sales","PO"]].astype(float)
@@ -61,7 +64,7 @@ def NN_prediction(data,i):
 
 #Load the stylesheet
 #local_css("style\style.css")
-path = r"\Databases\Templates.xlsx"
+path = r"Databases\Templates.xlsx"
 
 # Using object notation
 add_selectbox = st.sidebar.selectbox(
@@ -84,7 +87,7 @@ if add_selectbox == "Inicio":
     #### PLOT DATASET ####
     
     #We extract only the data that we need from the Dataset and create a new file for python
-    forecast_df = pd.read_csv(r"\Databases\PO-DataFrame.csv",delimiter="|")
+    forecast_df = pd.read_csv(r"Databases\PO-DataFrame.csv",delimiter="|")
     #Clean blank spaces from columns with strip
     forecast_df.rename(columns=lambda x: x.strip(),inplace=True)
     #Convert to number the month
@@ -239,7 +242,7 @@ elif add_selectbox == "Metricas":
         A continuación puedes comparar la precisión del modelo por mes
          """)
     
-    metrics_df = pd.read_excel(r"\Databases\PO-Dataset.xlsx",sheet_name="Metrics")
+    metrics_df = pd.read_excel(r"Databases\PO-Dataset.xlsx",sheet_name="Metrics")
     
     metrics_df[["Year","Month"]] = metrics_df[["Year","Month"]].astype(str)
     year = str(st.selectbox("Selecciona el año ",("2020","2021","2022")))
@@ -306,10 +309,11 @@ elif add_selectbox == "Metricas":
     LIN = np.sum(PO_df["Polynomial"])    
     
     df_filter["Predicted"] = (PO + LIN) / 2
+    df_filter.rename({"PO-Impact":"Impacto Real"},axis=1,inplace=True)    
     df_filter
             
     
-    real_total = np.sum(df_filter["PO-Impact"])
+    real_total = np.sum(df_filter["Impacto Real"])
     pred_total = np.sum(df_filter["Predicted"])
     diff = np.abs(real_total - pred_total)
     
@@ -336,15 +340,8 @@ elif add_selectbox == "Metricas":
     text = text + text2 + text3
     st.write(text, unsafe_allow_html=True)
     
-    fig = plt.figure(figsize=(10,6))    
-    plt.scatter(real_total, pred_total, alpha=0.8,cmap='white-grid')
 
-    plt.xlabel('Ventas')
-    plt.ylabel('Impacto')    
+    
 
-    #plt.show()
-    st.pyplot(fig)
-    
-    
     
                 
