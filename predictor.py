@@ -27,12 +27,12 @@ def render_svg(svg):
 
 #load the linear model
 
-pkl_filename = r"..\Polynomial.pkl" 
+pkl_filename = r"\Models\Polynomial.pkl" 
 with open(pkl_filename, 'rb') as file:
     pol = pickle.load(file)  
 
 #Load the NN
-NN = load_model(r"..\PO(Normal).h5")
+NN = load_model(r"\Models\PO(Normal).h5")
 def apportion(data,forecast):    
     pv_total = np.sum(data["Sales"])
     data[["Sales","PO"]] = data[["Sales","PO"]].astype(float)
