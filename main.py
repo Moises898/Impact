@@ -65,7 +65,7 @@ def NN_prediction(data,i):
 
 #Load the stylesheet
 #local_css("style\style.css")
-path = r"Databases\Templates.xlsx"
+path = r"Databases/Templates.xlsx"
 
 # Using object notation
 add_selectbox = st.sidebar.selectbox(
@@ -88,7 +88,7 @@ if add_selectbox == "Inicio":
     #### PLOT DATASET ####
     
     #We extract only the data that we need from the Dataset and create a new file for python
-    forecast_df = pd.read_csv(r"Databases\PO-DataFrame.csv",delimiter="|")
+    forecast_df = pd.read_csv(r"Databases/PO-DataFrame.csv",delimiter="|")
     #Clean blank spaces from columns with strip
     forecast_df.rename(columns=lambda x: x.strip(),inplace=True)
     #Convert to number the month
@@ -243,7 +243,7 @@ elif add_selectbox == "Metricas":
         A continuación puedes comparar la precisión del modelo por mes
          """)
     
-    metrics_df = pd.read_excel(r"Databases\PO-Dataset.xlsx",sheet_name="Metrics")
+    metrics_df = pd.read_excel(r"Databases/PO-Dataset.xlsx",sheet_name="Metrics")
     
     metrics_df[["Year","Month"]] = metrics_df[["Year","Month"]].astype(str)
     year = str(st.selectbox("Selecciona el año ",("2020","2021","2022")))
