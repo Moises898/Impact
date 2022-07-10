@@ -341,6 +341,7 @@ elif add_selectbox == "Metricas":
     st.write(text, unsafe_allow_html=True)
     
 else:
+    pass
     
         
     
