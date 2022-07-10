@@ -30,7 +30,7 @@ def render_svg(svg):
 
 #load the linear model
 
-pkl_filename = r"Models\Polynomial.pkl" 
+pkl_filename = (r"Models\Polynomial.pkl")
 with open(pkl_filename, 'rb') as file:
     pol = pickle.load(file)  
 
@@ -339,6 +339,10 @@ elif add_selectbox == "Metricas":
     text3 = "</span></div>"
     text = text + text2 + text3
     st.write(text, unsafe_allow_html=True)
+    
+else:
+    
+        
     
 
     
