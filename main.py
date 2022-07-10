@@ -64,7 +64,7 @@ def NN_prediction(data,i):
     
 
 #Load the stylesheet
-local_css("style\style.css")
+local_css(r"style/style.css")
 path = r"Databases/Templates.xlsx"
 
 # Using object notation
