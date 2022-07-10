@@ -31,7 +31,7 @@ def render_svg(svg):
 
 #load the linear model
 
-pkl_filename = (r"Models\Polynomial.pkl")
+pkl_filename = (r"Polynomial.pkl")
 file = open(os.path.join(pkl_filename, '.pkl'))
 pol = pickle.load(file)
 
