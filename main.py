@@ -11,6 +11,7 @@ import base64
 import textwrap
 import streamlit.components.v1 as components
 from sklearn.preprocessing import PolynomialFeatures
+import os
 
 
 st.set_page_config(page_title="Impact ML", layout="wide")
@@ -31,8 +32,8 @@ def render_svg(svg):
 #load the linear model
 
 pkl_filename = (r"Models\Polynomial.pkl")
-with open(pkl_filename, 'rb') as file:
-    pol = pickle.load(file)  
+file = open(os.path.join(pkl_filename, '.pkl'))
+pol = pickle.load(file)
 
 #Load the NN
 NN = load_model(r"Models\PO(Normal).h5")
